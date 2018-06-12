@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.user;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.demo.facade.UserService;
