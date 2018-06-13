@@ -2,6 +2,7 @@ package com.demo.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.demo.facade.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,10 +14,19 @@ public class DemoController {
     @Reference(version = "1.0.0")
     private UserService userService;
 
-    public String login(String id) {
+    @Reference(version = "2.0.0")
+    private UserService userService2;
 
-        // 登录鉴权
+
+    @GetMapping("/login")
+    public String login(String id) {
         String info = userService.getUser(id);
+        return info + " ,from controller";
+    }
+
+    @GetMapping("/login2")
+    public String login2(String id) {
+        String info = userService2.getUser(id);
         return info + " ,from controller";
     }
 
